@@ -6,7 +6,6 @@ class I386JosElfBinutils < Formula
   def install
     system "./configure", "--disable-nls",
                           "--disable-werror",
-                          "--enable-gold=yes",
                           "--prefix=#{prefix}",
                           "--target=i386-jos-elf"
     system "make"

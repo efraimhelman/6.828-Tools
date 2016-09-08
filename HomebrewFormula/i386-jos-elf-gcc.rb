@@ -12,18 +12,17 @@ class I386JosElfGcc < Formula
   def install
     mkdir "build" do
       binutils = Formulary.factory "i386-jos-elf-binutils"
-      ENV["PATH"] += ":#{binutils.prefix/"bin"}"
       
-      # GCC will suffer build errors if forced to use a particular linker.
-      ENV.delete "LD"
-
       system "../configure", "--disable-nls",
                              "--disable-libmudflap",
                              "--disable-libssp",
+                             "--disable-multilib",
                              "--disable-werror",
                              "--enable-languages=c",
                              "--prefix=#{prefix}",
                              "--target=i386-jos-elf",
+                             "--with-as=#{binutils.bin}/i386-jos-elf-as",
+                             "--with-ld=#{binutils.bin}/i386-jos-elf-ld",
                              "--with-newlib",
                              "--without-headers"
       system "make", "all-gcc"
