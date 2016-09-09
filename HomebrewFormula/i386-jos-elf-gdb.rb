@@ -10,6 +10,7 @@ class I386JosElfGdb < Formula
   def install
     system "./configure", "--disable-werror",
                           "--prefix=#{prefix}",
+                          "--program-prefix=i386-jos-elf-",
                           "--target=i386-jos-elf",
                           "--with-gdb-datadir=#{pkgshare}"
     system "make"
